@@ -1,0 +1,467 @@
+/* ================== RESET ================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #f8fafc, #eef2ff);
+  color: #1f2937;
+}
+
+/* ================== COMMON TEXT ================== */
+.title {
+  font-weight: 700;
+  font-size: 18px;
+  color: #111827;
+}
+
+#loggedAdminName {
+  font-weight: 500;
+  color: #111827;
+}
+
+.today {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* ================= BLUR PROGRESS LOADER ================= */
+.loader-backdrop {
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(10px);
+  background: rgba(15, 23, 42, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+
+.progress-wrapper {
+  width: 320px;
+  padding: 26px 24px;
+  border-radius: 18px;
+  background: rgba(15, 23, 42, 0.75);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.45);
+  text-align: center;
+  border: 1px solid rgba(56,189,248,0.25);
+}
+
+.progress-text {
+  color: #38bdf8;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 18px;
+  border-radius: 999px;
+  border: 2px solid #38bdf8;
+  padding: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 30%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #38bdf8, #2563eb, #38bdf8);
+  animation: loadingMove 1.4s ease-in-out infinite;
+}
+
+@keyframes loadingMove {
+  0% { transform: translateX(-120%); }
+  50% { transform: translateX(60%); width: 45%; }
+  100% { transform: translateX(220%); }
+}
+
+/* ================== LOGIN ================== */
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.login-icon {
+  font-size: 34px;
+  margin-bottom: 8px;
+}
+
+.login-header h2 {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.login-header p {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* ================== INPUTS ================== */
+input, select {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+input:focus, select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37,99,235,0.1);
+  background: #f8fafc;
+}
+
+/* ================== PASSWORD ================== */
+.pass-box {
+  position: relative;
+}
+
+.pass-box i {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #6b7280;
+}
+
+/* ================== BUTTONS ================== */
+.btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-primary { background: #2563eb; color: #fff; }
+.btn-primary:hover { background: #1e40af; transform: translateY(-1px); }
+
+.btn-success { background: #16a34a; color: #fff; }
+.btn-success:hover { background: #15803d; transform: translateY(-1px); }
+
+.btn-secondary { background: #f3f4f6; color: #111827; }
+.btn-secondary:hover { background: #e5e7eb; }
+
+.btn-sm {
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+/* ================== LINKS ================== */
+.link-button {
+  margin-top: 10px;
+  background: none;
+  border: none;
+  color: #2563eb;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.link-button.danger { color: #dc2626; }
+
+/* ================== DASHBOARD SELECTION ================== */
+.login-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ================== BACK BUTTON ================== */
+.back-btn {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.back-btn:hover {
+  text-decoration: underline;
+  color: #1e40af;
+}
+
+/* ================== TOAST ================== */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #111827;
+  color: #ffffff;
+  padding: 12px 16px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.toast-dot {
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+}
+
+/* ================== ADMIN / DOER DASHBOARD ================== */
+.app {
+  padding: 32px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc, #eef2ff);
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  margin-bottom: 18px;
+}
+
+/* ================== STATS ================== */
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.stat-card {
+  padding: 16px;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  text-align: center;
+}
+
+.pending { border-left: 4px solid #f59e0b; }
+.completed { border-left: 4px solid #16a34a; }
+.delayed { border-left: 4px solid #dc2626; }
+
+/* ================== TASKS ================== */
+.tasks-wrapper {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  margin-top: 16px;
+}
+
+
+
+/* ================= TASK TABLE ================= */
+
+.task-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+}
+
+/* ===== HEADER ===== */
+.task-table thead {
+  background: #111827;
+}
+
+.task-table th {
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 12px 10px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* ===== BODY ===== */
+.task-table td {
+  padding: 12px 10px;
+  font-size: 13px;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: middle;
+}
+
+/* Hover */
+.task-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+
+/* ===== CHECKBOX ===== */
+.task-table input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* ===== DELETE BUTTON ===== */
+.task-delete-btn {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.task-delete-btn:hover {
+  background: #fecaca;
+}
+
+/* ===== NO TASK ROW ===== */
+.no-task-row {
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+
+
+
+#taskCount {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* ===== DOER NAME + EMAIL SAME ROW FIX ===== */
+.task-input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* ===== SAVE TASK BUTTON HEIGHT FIX ===== */
+#addTaskBtn {
+  height: 46px;          /* same as input height */
+  padding: 0 16px;      /* vertical padding hata di */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* ===== TASK STATES ===== */
+
+/* Completed = light green */
+.task-table tr.done {
+  background: #ecfdf5;
+}
+
+.task-table tr.done td {
+  text-decoration: line-through;
+  color: #6b7280;
+}
+
+/* Delayed = light red */
+.task-table tr.delayed {
+  background: #fef2f2;
+}
+
+.task-table tr.delayed td {
+  color: #991b1b;
+  font-weight: 500;
+}
+
+/* ===== DOER HEADER FIX ===== */
+.doer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Welcome text */
+#doerWelcomeText {
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 2px;
+}
+
+/* Small logout button */
+.doer-logout {
+  width: fit-content;       /* text ke barabar */
+  padding: 6px 14px;        /* compact */
+  font-size: 13px;
+  border-radius: 8px;
+}
+
+
+/* ===== TASK LIST HEADER (DOER) ===== */
+.tasks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 14px 18px;
+  margin-bottom: 10px;   /* ✅ niche gap */
+
+  background: #111827;
+  color: #ffffff;
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,0.05);
+
+  font-size: 15px;
+  font-weight: 600;
+
+  border-radius: 14px;
+}
+
+
+/* Left title text */
+.tasks-header > div:first-child {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* Right task count */
+#doerTaskCount {
+  font-size: 13px;
+  font-weight: 500;
+  color: #d1d5db;            /* soft grey */
+}
+
+.stat-card.all {
+  border-left: 4px solid #2563eb;
+}
+
+.stat-card {
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.stat-card.active {
+  outline: 2px solid #2563eb;
+  box-shadow: 0 0 0 4px rgba(37,99,235,0.15);
+  transform: translateY(-2px);
+}

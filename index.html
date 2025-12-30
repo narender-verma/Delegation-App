@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Delegation App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="responsive.css">
+</head>
+
+<body>
+
+<!-- ================= LOADER ================= -->
+<div id="loader" class="loader-backdrop" style="display:none">
+  <div class="progress-wrapper">
+    <div class="progress-text">loading...</div>
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================= -->
+<!-- ========== DASHBOARD SELECTION PAGE ============== -->
+<!-- ================================================= -->
+<div id="loginPage" class="login-wrapper" style="display:none">
+    <div class="login-card">
+
+        <div class="login-header">
+            <div class="login-icon">🔐</div>
+            <h2>Welcome To Shanaya Motor And Appliances</h2>
+            <p>Select dashboard</p>
+        </div>
+
+        <div class="login-actions">
+            <button class="btn btn-primary" id="adminBtn">
+                👨‍💼 Admin Dashboard
+            </button>
+
+            <button class="btn btn-secondary" id="doerBtn">
+                🧑‍💻 Doer Dashboard
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- ================================================= -->
+<!-- ================= ADMIN LOGIN =================== -->
+<!-- ================================================= -->
+<div id="adminLoginPage" class="login-wrapper">
+    <div class="login-card">
+        <button class="back-btn" id="backFromAdminLogin">← Back</button>
+
+        <div class="login-header">
+            <div class="login-icon">👨‍💼</div>
+            <h2>Admin Login</h2>
+        </div>
+
+        <input type="email" id="adminLoginEmail" placeholder="Enter email">
+
+        <div class="pass-box">
+            <input type="password" id="adminLoginPassword" placeholder="Enter password">
+            <i id="toggleLoginPass" class="fa-solid fa-eye"></i>
+        </div>
+
+        <button id="adminLoginBtn2" class="btn btn-primary">Login</button>
+        <button id="goToAdminSignup" class="link-button">Create new account</button>
+    </div>
+</div>
+
+<!-- ================================================= -->
+<!-- ================= ADMIN SIGNUP ================== -->
+<!-- ================================================= -->
+<div id="adminSignupPage" class="login-wrapper" style="display:none">
+
+    <div class="login-card">
+        <button class="back-btn" id="backFromAdminSignup">← Back</button>
+
+        <div class="login-header">
+            <div class="login-icon">📝</div>
+            <h2>Admin Signup</h2>
+        </div>
+
+        <input type="text" id="adminSignupName" placeholder="Enter name">
+        <input type="email" id="adminSignupEmail" placeholder="Enter email">
+
+        <div class="pass-box">
+            <input type="password" id="adminSignupPassword" placeholder="Enter password">
+            <i id="toggleSignupPass" class="fa-solid fa-eye"></i>
+        </div>
+
+        <div class="pass-box">
+            <input type="password" id="adminSignupConfirm" placeholder="Confirm password">
+            <i id="toggleSignupConfirm" class="fa-solid fa-eye"></i>
+        </div>
+
+        <button id="adminSignupBtn" class="btn btn-success">Sign Up</button>
+        <button id="goToAdminLogin" class="link-button">Already have an account? Login</button>
+    </div>
+</div>
+
+<!-- ================================================= -->
+<!-- ================= DOER LOGIN ==================== -->
+<!-- ================================================= -->
+<div id="doerLoginPage" class="login-wrapper" style="display:none">
+
+    <div class="login-card">
+        <button class="back-btn" id="backFromDoerLogin">← Back</button>
+
+        <div class="login-header">
+            <div class="login-icon">🧑‍💻</div>
+            <h2>Doer Login</h2>
+        </div>
+
+        <input type="email" id="doerLoginEmail" placeholder="Enter email">
+
+        <div class="pass-box">
+            <input type="password" id="doerLoginPassword" placeholder="Enter password">
+            <i id="toggleDoerLoginPass" class="fa-solid fa-eye"></i>
+        </div>
+
+        <button id="doerLoginBtn" class="btn btn-primary">Login</button>
+        <button id="goToDoerSignup" class="link-button">Create account</button>
+    </div>
+</div>
+
+<!-- ================================================= -->
+<!-- ================= DOER SIGNUP =================== -->
+<!-- ================================================= -->
+<div id="doerSignupPage" class="login-wrapper" style="display:none">
+
+    <div class="login-card">
+        <button class="back-btn" id="backFromDoerSignup">← Back</button>
+
+        <div class="login-header">
+            <div class="login-icon">🧾</div>
+            <h2>Doer Signup</h2>
+        </div>
+
+        <input type="text" id="doerSignupName" placeholder="Enter name">
+        <input type="email" id="doerSignupEmail" placeholder="Enter email">
+
+        <div class="pass-box">
+            <input type="password" id="doerSignupPassword" placeholder="Enter password">
+            <i id="toggleDoerSignupPass" class="fa-solid fa-eye"></i>
+        </div>
+
+        <div class="pass-box">
+            <input type="password" id="doerSignupConfirm" placeholder="Confirm password">
+            <i id="toggleDoerSignupConfirm" class="fa-solid fa-eye"></i>
+        </div>
+
+        <button id="doerSignupBtn" class="btn btn-success">Signup</button>
+        <button id="goToDoerLogin" class="link-button">Already have an account? Login</button>
+    </div>
+</div>
+
+<!-- ================================================= -->
+<!-- ================= ADMIN DASHBOARD =============== -->
+<!-- ================================================= -->
+<div id="adminPage" class="app" style="display:none">
+
+    <div class="admin-stats">
+
+    <div class="stat-card all active" data-filter="all">
+        <h3 id="allCount">0</h3>
+        <p>All Tasks</p>
+    </div>
+
+    <div class="stat-card pending" data-filter="pending">
+        <h3 id="pendingCount">0</h3>
+        <p>Pending Tasks</p>
+    </div>
+
+    <div class="stat-card completed" data-filter="completed">
+        <h3 id="completedCount">0</h3>
+        <p>Completed Tasks</p>
+    </div>
+
+    <div class="stat-card delayed" data-filter="delayed">
+        <h3 id="delayedCount">0</h3>
+        <p>Delayed Tasks</p>
+    </div>
+
+ </div>
+
+
+    <div class="app-header">
+        <div class="title">✅ Delegation Cum To-Do</div>
+
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+            <div class="today" id="todayText"></div>
+            <div id="loggedAdminName" class="today"></div>
+            <button id="logoutBtn" class="btn btn-secondary btn-sm">Logout</button>
+        </div>
+    </div>
+
+    <div class="input-group">
+        <div class="input-label">New Task</div>
+
+        <div class="task-input-row">
+            <select id="doerSelect">
+                <option value="">Select doer...</option>
+            </select>
+            <input type="email" id="emailSelect" readonly />
+        </div>
+
+        <input type="text" id="taskInput" placeholder="Write your task here..." />
+
+        <div class="task-input-row task-input-row-second">
+            <input type="datetime-local" id="deadlineInput" />
+            <button id="addTaskBtn" class="btn btn-primary">+ Save Task</button>
+        </div>
+    </div>
+
+    <div class="tasks-wrapper">
+        <div class="tasks-header">
+            <div>Tasks</div>
+            <div id="taskCount">0 tasks</div>
+        </div>
+        <ul id="taskList"></ul>
+    </div>
+</div>
+
+<!-- ================================================= -->
+<!-- ================= DOER DASHBOARD ================= -->
+<!-- ================================================= -->
+<div id="doerPage" class="app" style="display:none">
+    <div class="app-header doer-header">
+    <div>
+        <div class="title">👨‍💻 Doer Dashboard</div>
+        <div id="doerWelcomeText" class="today"></div>
+    </div>
+
+    <button id="doerLogoutBtn" class="btn btn-secondary btn-sm doer-logout">
+        Logout
+    </button>
+    </div>
+
+
+    <div class="tasks-wrapper">
+    <div class="tasks-header">
+        <div>Your Tasks</div>
+        <div id="doerTaskCount"></div>
+    </div>
+    <ul id="doerTaskList"></ul>   <!-- ✅ YE AB SAHI HAI -->
+   </div>
+
+</div>
+
+<!-- ================= TOAST ================= -->
+<div id="toast" class="toast">
+    <div class="toast-dot"></div>
+    <div id="toastMsg"></div>
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>
